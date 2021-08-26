@@ -1,29 +1,19 @@
-#include <opencv2/opencv.hpp>
+#include <opencv2/highgui.hpp>
 #include <iostream>
 
-
-using namespace cv;
-using namespace std;
-
-
-int main()
-{
-	Mat img_color;
-
-
-	img_color = imread("cat on laptop.jpg", IMREAD_COLOR);
-	
-	if (img_color.empty())
-	{
-		cout << "이미지 파일을 읽을 수 없습니다." << endl;
-		return -1;
-	}
-
-
-	namedWindow("Color");
-	imshow("Color", img_color);
-
-	waitKey(0);
-	destroyAllWindows();
-
+int main( int argc, char** argv ) {
+  
+  cv::Mat image;
+  image = cv::imread("sample.jpeg" , CV_LOAD_IMAGE_COLOR);
+  
+  if(! image.data ) {
+      std::cout <<  "Could not open or find the image" << std::endl ;
+      return -1;
+    }
+  
+  cv::namedWindow( "Display window", cv::WINDOW_AUTOSIZE );
+  cv::imshow( "Display window", image );
+  
+  cv::waitKey(0);
+  return 0;
 }
